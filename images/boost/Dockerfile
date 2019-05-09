@@ -1,5 +1,8 @@
 FROM alpine:latest
 
+LABEL maintainer="arnstein@arnstein.comedian"
+LABEL "The beginnging of a boost img"
+
 RUN apk upgrade \
     && apk add p7zip
 
