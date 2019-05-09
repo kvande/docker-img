@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-LABEL maintainer="arnstein@arnstein.comedian"
+LABEL maintainer="jalla@balla.com"
 LABEL description="The beginnging of a boost img"
 
 RUN apk upgrade \
