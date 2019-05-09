@@ -19,6 +19,6 @@ RUN 7z x -aoa boost_1_70_0.7z
 WORKDIR /usr/arnstein/boost_1_70_0
 
 RUN ./bootstrap.sh
-RUN ./b2 --build-dir=/usr/arnstein/ak-sin-boost toolset=gcc stage
+RUN ./b2 toolset=gcc stage
 
 CMD [ "sh" ]
