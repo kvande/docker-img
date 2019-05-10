@@ -8,7 +8,8 @@ RUN apk upgrade \
     && apk add bash \
     && apk add tree \
     && apk add build-base \
-    && apk add linux-headers
+    && apk add linux-headers \
+    && apk add cmake
 
 WORKDIR /usr/arnstein
 
