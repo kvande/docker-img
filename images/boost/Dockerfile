@@ -19,7 +19,7 @@ ADD https://dl.bintray.com/boostorg/release/1.70.0/source/boost_1_70_0.7z .
 
 RUN 7z x -aoa boost_1_70_0.7z
 
-WORKDIR /usr/arnstein/boost_1_70_0
+WORKDIR /usr/ping-pong/boost_1_70_0
 
 RUN ./bootstrap.sh
 RUN ./b2 toolset=gcc stage
