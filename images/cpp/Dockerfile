@@ -6,7 +6,7 @@ RUN apt update \
     && apt-add-repository 'deb http://archive.ubuntu.com/ubuntu/ disco main' \
     && apt -y install cmake \
     && apt -y install g++ \
-    && apt install gdb
+    && apt -y install gdb
     
 
 WORKDIR /usr/ak
