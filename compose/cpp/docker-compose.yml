@@ -1,0 +1,9 @@
+version: '3.1'
+
+services:
+  cpp:cd 
+    image: 'ak-boost-1.70'
+    volumes:
+      - E:/Temp/C++/NewRandomCmakeTesting:/code
+    command: tail -f /dev/null
+  
