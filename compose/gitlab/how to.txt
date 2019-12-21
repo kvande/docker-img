@@ -1,6 +1,7 @@
 
-A lot of problems getting this to work on windows:
+A lot of problems getting this to work on windows :/
+
 Check this one:
 https://stackoverflow.com/questions/44684621/volume-trouble-with-gitlab-docker-image-on-windows
 
-A part from that it works, but have to alter the path in volumes that points to local disk
+This should now work, but the path to the 'windows folder' have to be adjusted before running 'docker-compose up'

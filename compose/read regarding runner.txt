@@ -1,0 +1,28 @@
+
+In case of running a gitlab runner as windows service:
+
+The runner will try to check out (git) from http://127.0.0.1:80 since it does
+not know about the port mapping in docker-compose. In order for this to
+take the correct port into account the clone_url has to be set, as below:
+ 
+
+This is the complete setup, note the clone_url:
+
+
+concurrent = 1
+check_interval = 0
+
+[session_server]
+  session_timeout = 1800
+
+[[runners]]
+  name = "jalla"
+  url = "http://127.0.0.1:5123/"
+  clone_url = "http://127.0.0.1:5123/"
+  token = "abc12890128910201982"
+  executor = "shell"
+  shell = "powershell"
+  [runners.custom_build_dir]
+  [runners.cache]
+    [runners.cache.s3]
+    [runners.cache.gcs]
