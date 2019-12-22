@@ -1,6 +1,6 @@
 version: '3'
 services: 
-  gitlab-runner:
+  gitlab-runner-one:
       image: gitlab/gitlab-runner:latest
       restart: always
       hostname: 'runner-one'
@@ -9,3 +9,13 @@ services:
         - '/var/run/docker.sock:/var/run/docker.sock'
       
       network_mode: "bridge"    # do not create a new network
+
+  # gitlab-runner-two:
+  #   image: gitlab/gitlab-runner:latest
+  #   restart: always
+  #   hostname: 'runner-two'
+  #   volumes:
+  #     - 'F:\Temp\gitlab\gitlab-runner-two:/etc/gitlab-runner'   # update this
+  #     - '/var/run/docker.sock:/var/run/docker.sock'
+    
+  #   network_mode: "bridge"    # do not create a new network
