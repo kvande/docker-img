@@ -1,0 +1,7 @@
+gitlab-runner:
+    image: gitlab/gitlab-runner:latest
+    restart: always
+    hostname: 'runner-one'
+    volumes:
+      - 'F:\Temp\gitlab-runner-one:/etc/gitlab-runner'   # update this
+      - '/var/run/docker.sock:/var/run/docker.sock'

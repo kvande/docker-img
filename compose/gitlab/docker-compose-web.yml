@@ -1,0 +1,19 @@
+version: '3'
+services: 
+    gitlab-web:
+        image: 'gitlab/gitlab-ce:latest'
+        restart: always
+        hostname: 'gitlabweb'
+        environment:
+            GITLAB_OMNIBUS_CONFIG:
+                # external_url 'https://gitlab.example.com'
+                # Add any other gitlab.rb configuration here, each on its own line
+        ports:
+            - '5123:80'
+            - '443:443'
+            - '22:22'
+        volumes:
+            - 'F:\Temp\gitlab-web:/etc/gitlab'  # on windows, UPDATE THIS ONE ACCORDING TO FILE SYSTEM   have to be this way in order to work
+            - '/gitlab-logs:/var/log/gitlab'
+            - '/gitlab-data:/var/opt/gitlab'
+    
