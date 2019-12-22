@@ -14,9 +14,11 @@ services:
             - '22:22'
         volumes:
             - 'F:\Temp\gitlab\web:/etc/gitlab'  # on windows, UPDATE THIS ONE ACCORDING TO FILE SYSTEM   have to be this way in order to work
-            - '/gitlab-logs:/var/log/gitlab'
-            - '/gitlab-data:/var/opt/gitlab'
+            - 'gitlab-logs:/var/log/gitlab'
+            - 'gitlab-data:/var/opt/gitlab'
         
         network_mode: "bridge"    # do not create a new network
 
-   
+volumes: 
+    gitlab-logs:
+    gitlab-data:
