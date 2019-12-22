@@ -1,5 +1,5 @@
 
-In case of running a gitlab runner as windows service:
+In case of running a gitlab runner as windows service (not in docker):
 
 The runner will try to check out (git) from http://127.0.0.1:80 since it does
 not know about the port mapping in docker-compose. In order for this to
