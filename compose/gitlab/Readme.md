@@ -1,9 +1,7 @@
 
-# How to, hopefully, get this running on a Windows pc
+# How to get this running on a Windows pc
 
-See 'Setup a runner' 4] before starting, it might break everything
-
-## Setup web
+## Setup gitlab web
 
 1] Start out with running the docker-compose-web file
     . but first alter the Windows specific path in it
@@ -34,7 +32,7 @@ See 'Setup a runner' 4] before starting, it might break everything
         .. gitlab does not know that docker has been used to map port 80 to 5123 for the outside world
 
 
-## Setup a runner
+## Setup gitlab runner
 
 1] In gitlab web; Settings -> CI/CD
     . grab the token
