@@ -5,7 +5,7 @@ services:
       restart: always
       hostname: 'runner-one'
       volumes:
-        - 'F:\Temp\gitlab\gitlab-runner-one:/etc/gitlab-runner'   # update this
+        - 'C:\Temp\gitlab\gitlab-runner-one:/etc/gitlab-runner'   # update this
         - '/var/run/docker.sock:/var/run/docker.sock'
       
       network_mode: "bridge"    # do not create a new network
