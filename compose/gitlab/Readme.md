@@ -47,6 +47,7 @@
 
 
 3] Run docker compose: 'docker-compose -f "docker-compose-runner.yml" up -d'
+    . use dotnetcore, or dotnetcore with powershell core if such containers are needed
     . neglect 'WARNING: Found orphan containers' message
 
 
