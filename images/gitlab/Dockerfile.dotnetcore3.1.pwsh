@@ -1,0 +1,22 @@
+# for ubuntu (server): dotnet core 3.1 and powershell core
+# for some reason pwsh must come before dotnet core (not sure why)
+
+FROM gitlab/gitlab-runner
+
+
+RUN apt update && \
+    wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb && \
+    dpkg -i packages-microsoft-prod.deb && \
+    apt update && \
+    apt -y install software-properties-common && \
+    add-apt-repository universe && \
+    apt update && \
+    apt install -y powershell
+
+RUN apt update && \
+    wget -q https://packages.microsoft.com/config/ubuntu/19.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+    dpkg -i packages-microsoft-prod.deb && \
+    apt update && \
+    apt -y install apt-transport-https && \
+    apt update && \
+    apt -y install dotnet-sdk-3.1
