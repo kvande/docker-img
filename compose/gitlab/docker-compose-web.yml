@@ -9,7 +9,7 @@ services:
                 # external_url 'https://gitlab.example.com'
                 # Add any other gitlab.rb configuration here, each on its own line
         ports:
-            - '5123:80'
+            - '5123:5123'   # see readme, will use another port than the default port 80. Have to alter EXTERNAL_URL
             - '443:443'
             - '22:22'
         volumes:

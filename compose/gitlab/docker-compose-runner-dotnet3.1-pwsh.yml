@@ -1,16 +1,16 @@
 version: '3'
 services: 
-  gitlab-runner-two:
+  gitlab-runner-five:
       build:
         context: ../../images/gitlab
         dockerfile: 'Dockerfile.dotnetcore3.1.pwsh'
       restart: always
-      hostname: 'runner-two'
+      hostname: 'runner-five'
       volumes:
-        - 'F:\Temp\gitlab\gitlab-runner-two:/etc/gitlab-runner'   # update this
-        - 'gitlab-runner-two:/var/run/docker.sock'
+        - 'D:\gitlab_ci\gitlab-runner-five:/etc/gitlab-runner'   # update this
+        - 'gitlab-runner-five:/var/run/docker.sock'
       
       network_mode: "bridge"    # do not create a new network
 
 volumes:
-  gitlab-runner-two:
+  gitlab-runner-five:

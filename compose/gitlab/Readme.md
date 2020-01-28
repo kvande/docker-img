@@ -22,14 +22,13 @@
         .. docker container exec -it 'the container id' bash
         .. cd into: /etc/gitlab
         .. nano gitlab.rb
-        .. uncomment line # external_url 'GENERATED_EXTERNAL_URL', change to external_url 'http://127.0.0.1'
+        .. uncomment line # external_url 'GENERATED_EXTERNAL_URL', change to external_url 'http://127.0.0.1:5123'   (5123 have to match the one set in docker-compose)
         .. while still in docker container, restart gitlab: gitlab-ctl reconfigure
         .. refresh in Chrome (note, the page might be laggy, and not properly updating, give it a few minutes, and use ctrl-F5)
-            ... check clone url, should now have changed to 'git clone http://127.0.0.1/abcdef/my-project.git'
+            ... check clone url, should now have changed to 'git clone http://127.0.0.1:5123/abcdef/my-project.git'
 
 4] Clone the repo
-    . remarks, port must be added git clone http://127.0.0.1:5123/abcdef/my-project.git
-        .. gitlab does not know that docker has been used to map port 80 to 5123 for the outside world
+    
 
 
 ## Setup gitlab runner
