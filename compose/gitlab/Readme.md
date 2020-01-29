@@ -13,19 +13,16 @@
         . 'gitlab nonsense', the directory must be manually created. Create and rerun command.
 
 2] When container has started
-    . open in Chrome 127.0.0.1:5123 (port 5123 from docker-compose-web, where port 5123 is mapped to 80 in container)
+    .. docker container exec -it 'the container id' bash
+    .. cd into: /etc/gitlab
+    .. uncomment line # external_url 'GENERATED_EXTERNAL_URL', change to external_url 'http://127.0.0.1:5123'   (5123 have to     match the one set in docker-compose)
+    .. fix Git lfs (pretty far down). Uncomment gitlab_rails['lfs_enabled']
+    .. while still in docker container, restart gitlab: gitlab-ctl reconfigure
+
+3] Create a project
+    . open in Chrome 127.0.0.1:5123 (port 5123 from docker-compose-web, where port 5123 is mapped to 5123 in container, from 2] above)
         .. register user
         .. create a new project ('gitlab visbility level' could be public for local testing purpose)
-
-3] Fix clone url
-    . the clone url for project created in 2] will be wrong, it looks something like this: git clone http://gitlabweb/abcdef/my-project.git
-        .. docker container exec -it 'the container id' bash
-        .. cd into: /etc/gitlab
-        .. nano gitlab.rb
-        .. uncomment line # external_url 'GENERATED_EXTERNAL_URL', change to external_url 'http://127.0.0.1:5123'   (5123 have to match the one set in docker-compose)
-        .. while still in docker container, restart gitlab: gitlab-ctl reconfigure
-        .. refresh in Chrome (note, the page might be laggy, and not properly updating, give it a few minutes, and use ctrl-F5)
-            ... check clone url, should now have changed to 'git clone http://127.0.0.1:5123/abcdef/my-project.git'
 
 4] Clone the repo
     
@@ -53,7 +50,8 @@
 4] Register runner  
     . run 'docker run --rm -t -i -v F:\Temp\gitlab\gitlab-runner-one:/etc/gitlab-runner gitlab/gitlab-runner register'
         .. note F:\Temp\gitlab\gitlab-runner-one, it matches the path in the compose file
-    . use ip from 1] (http://172.18.0.2"), not the one from gitlab web (http://127.0.0.1)
+    . use ip from 1] (http://172.18.0.2:5123"), not the one from gitlab web (http://127.0.0.1)
+    ! port most be included !
     . use token from web
     
 5] Fixing check out path for gitlab runner
@@ -62,7 +60,7 @@
         fatal: unable to access 'http://gitlab-ci-token:[MASKED]@127.0.0.1/abcdef/my-project.git/': Failed to connect to 127.0.0.1 port 80: Connection refused
     . ip is wrong, have to fix it 
         .. either fix it in F:\Temp\gitlab-runner-one, or log into container at '/etc/gitlab-runner'
-            ... add clone url in runner section of file config.toml: clone_url = "http://172.17.0.2" (remarks: no port, since this is all inside docker)
+            ... add clone url in runner section of file config.toml: clone_url = "http://172.17.0.2:5123"
             ... restart container
             ...full file:
 
@@ -73,13 +71,14 @@
             session_timeout = 1800
 
             [[runners]]
-            name = "dockerrunner"
-            url = "http://172.17.0.2"
-            clone_url = "http://172.17.0.2"
-            token = "gfPNWGUUJFJVoH7PmbCC"
+            name = "docker-runner-two"
+            url = "http://172.17.0.2:5123"
+            clone_url = "http://172.17.0.2:5123"
+            token = "fgxZA4egaGhn-8ssRsiV"
             executor = "shell"
             [runners.custom_build_dir]
             [runners.cache]
                 [runners.cache.s3]
                 [runners.cache.gcs]
+
 
