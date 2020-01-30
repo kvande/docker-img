@@ -25,7 +25,7 @@
         .. create a new project ('gitlab visbility level' could be public for local testing purpose)
 
 4] Clone the repo
-    
+
 
 
 ## Setup gitlab runner
@@ -48,8 +48,8 @@
 
 
 4] Register runner  
-    . run 'docker run --rm -t -i -v F:\Temp\gitlab\gitlab-runner-one:/etc/gitlab-runner gitlab/gitlab-runner register'
-        .. note F:\Temp\gitlab\gitlab-runner-one, it matches the path in the compose file
+    . run 'docker run --rm -t -i -v D:\gitlab_ci\gitlab-runner-one:/etc/gitlab-runner gitlab/gitlab-runner register'
+        .. note D:\gitlab_ci\gitlab-runner-one, it matches the path in the compose file
     . use ip from 1] (http://172.18.0.2:5123"), not the one from gitlab web (http://127.0.0.1)
     ! port most be included !
     . use token from web
