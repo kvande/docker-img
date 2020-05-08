@@ -3,7 +3,7 @@ version: '2.0'
 services:
     angular:
         build: .
-        container_name: arch_angular_dev_sm
+        container_name: arch_angular
         ports:
             - 4222:4222
-        
+        command: "ng serve  --port 4222 --host 0.0.0.0"
