@@ -1,0 +1,12 @@
+
+# start it detached: docker-compose -f docker-compose-no-serve.yml up -d --build --force-recreate
+# attach to container and: ng serve  --port 4222 --host 0.0.0.0
+version: '3.0'
+
+services:
+    angular:
+        build: .
+        container_name: arch_angular_no_serve
+        ports:
+            - 4222:4222
+        tty: true

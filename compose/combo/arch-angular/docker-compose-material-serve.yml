@@ -1,0 +1,12 @@
+# docker-compose -f docker-compose-material-serve.yml up --build --force-recreate
+
+version: '3.0'
+
+services:
+    angular:
+        build: .
+        container_name: arch_angular_material
+        ports:
+            - 4222:4222
+        command: >
+            sh -c "ng add @angular/material --theme=custom --typography=true --animations=true && ng serve  --port 4222 --host 0.0.0.0"

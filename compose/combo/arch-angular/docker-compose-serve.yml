@@ -1,9 +1,11 @@
-version: '2.0'
+# docker-compose -f docker-compose-serve.yml up --build --force-recreate
+
+version: '3.0'
 
 services:
     angular:
         build: .
-        container_name: arch_angular
+        container_name: arch_angular_serve
         ports:
             - 4222:4222
         command: "ng serve  --port 4222 --host 0.0.0.0"
