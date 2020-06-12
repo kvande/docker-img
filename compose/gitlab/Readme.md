@@ -4,18 +4,18 @@
 ## Setup gitlab web
 
 1] Start out with running the docker-compose-web file
-    . but first alter the Windows specific path in it
-        .. the content in that path is used so that the container can restart without loosing all gitlab specific setup
-    . run the file like this: docker-compose -f "docker-compose-web.yml" up -d
+   > but first alter the Windows specific path in it
+        > - the content in that path is used so that the container can restart without loosing all gitlab specific setup
+    > - . run the file like this: docker-compose -f "docker-compose-web.yml" up -d
 
 1 errors]
-    ERROR: for gitlab-web  Cannot start service gitlab-web: error while creating mount source path '/host_mnt/f/Temp/gitlab-web': mkdir /host_mnt/f: file exists
+    > - ERROR: for gitlab-web  Cannot start service gitlab-web: error while creating mount source path '/host_mnt/f/Temp/gitlab-web': mkdir /host_mnt/f: file exists
         . 'gitlab nonsense', the directory must be manually created. Create and rerun command.
 
 2] When container has started
-    .. docker container exec -it 'the container id' bash
-    .. cd into: /etc/gitlab
-    .. uncomment line # external_url 'GENERATED_EXTERNAL_URL', change to external_url 'http://127.0.0.1:5123'   (5123 have to     match the one set in docker-compose)
+    * docker container exec -it 'the container id' bash
+    * cd into: /etc/gitlab
+    * in gitlab.rb uncomment line # external_url 'GENERATED_EXTERNAL_URL', change to external_url 'http://127.0.0.1:5123'   (5123 have to     match the one set in docker-compose)
     .. fix Git lfs (pretty far down). Uncomment gitlab_rails['lfs_enabled']
     .. while still in docker container, restart gitlab: gitlab-ctl reconfigure
 
@@ -53,8 +53,15 @@
     . use ip from 1] (http://172.18.0.2:5123"), not the one from gitlab web (http://127.0.0.1)
     ! port most be included !
     . use token from web
+
+5] Remove git lfs (if needed, might be needed in docker and windows host)   
+    . exec into git-lab runner
+    . the run: which git-lfs
+    . delete that folder
+    . it should now work
+
     
-5] Fixing check out path for gitlab runner
+6] Fixing check out path for gitlab runner
     . if/when encountering this, when pushing to repo at runner fails:
         Created fresh repository.
         fatal: unable to access 'http://gitlab-ci-token:[MASKED]@127.0.0.1/abcdef/my-project.git/': Failed to connect to 127.0.0.1 port 80: Connection refused
