@@ -89,3 +89,9 @@
                 [runners.cache.gcs]
 
 
+6] Optional
+How to remove git-lfs on runner, if needed
+
+There exists no installer, so have to do it like this:
+(https://github.com/git-lfs/git-lfs/issues/316)
+which git-lfs and then remove the folder
