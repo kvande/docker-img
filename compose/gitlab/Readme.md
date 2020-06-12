@@ -59,8 +59,9 @@
     . the run: which git-lfs
     . delete that folder
     . it should now work
+    . there exists no uninstaller, see  (https://github.com/git-lfs/git-lfs/issues/316)
 
-    
+
 6] Fixing check out path for gitlab runner
     . if/when encountering this, when pushing to repo at runner fails:
         Created fresh repository.
@@ -88,10 +89,3 @@
                 [runners.cache.s3]
                 [runners.cache.gcs]
 
-
-6] Optional
-How to remove git-lfs on runner, if needed
-
-There exists no installer, so have to do it like this:
-(https://github.com/git-lfs/git-lfs/issues/316)
-which git-lfs and then remove the folder
