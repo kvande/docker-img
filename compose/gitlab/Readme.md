@@ -56,7 +56,7 @@
 
 5] Remove git lfs (if needed, might be needed in docker and windows host)   
     . exec into git-lab runner
-    . the run: which git-lfs
+    . then run: which git-lfs
     . delete that folder
     . it should now work
     . there exists no uninstaller, see  (https://github.com/git-lfs/git-lfs/issues/316)
