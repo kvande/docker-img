@@ -26,7 +26,11 @@
 
 4] Clone the repo
 
-
+5] Optional, enable test report
+    .. exec into container
+    .. run: gitlab-rails console -e production (do not have to cd into any specific folder)
+    .. in rails console, run: Feature.enable(:junit_pipeline_view)
+    
 
 ## Setup gitlab runner
 
