@@ -26,7 +26,11 @@
 
 4] Clone the repo
 
-
+5] Optional, enable test report
+    .. exec into container
+    .. run: gitlab-rails console -e production (do not have to cd into any specific folder)
+    .. in rails console, run: Feature.enable(:junit_pipeline_view)
+    
 
 ## Setup gitlab runner
 
@@ -56,7 +60,7 @@
 
 5] Remove git lfs (if needed, might be needed in docker and windows host)   
     . exec into git-lab runner
-    . the run: which git-lfs
+    . then run: which git-lfs
     . delete that folder (rm -rf /usr/bin/git-lfs)
     . it should now work
     . there exists no uninstaller, see  (https://github.com/git-lfs/git-lfs/issues/316)
