@@ -1,0 +1,23 @@
+version: "3.7"
+
+services: 
+  gitlab-runner-docker:
+    image: ubuntu
+    #restart: always
+    hostname: 'runner-docker'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+#     volumes: 
+#       - type: volume
+#         source: "/var/run"
+#         target: "/var/run" # see https://tomgregory.com/running-docker-in-docker-on-windows/
+
+# volumes: 
+#   run:
+
+# denne funka docker run --rm -it -v "/var/run/docker.sock:/var/run/docker.sock" docker sh
+
+# dette her fungerte ikke, 
+# se også denne og lignende: https://medium.com/better-programming/about-var-run-docker-sock-3bfd276e12fd
+
+# bare google /var/run/docker.sock docker-compose

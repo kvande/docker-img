@@ -46,7 +46,7 @@
     . and name if creating more runners
 
 
-3] Run docker compose: docker-compose -f "docker-compose-runner-dotnet3.1-pwsh.yml" up -d
+3] Run docker compose: docker-compose -f "docker-compose-runner-dotnet5-pwsh.yml" up -d
     . use dotnetcore, or dotnetcore with powershell core if such containers are needed
     . neglect 'WARNING: Found orphan containers' message
 
