@@ -13,7 +13,7 @@ services:
             - '443:443'
             - '2224:22'   # ssh port (HOST:CONTAINER), must match the port above, port 22 should not be used due to port collision // https://www.howtoforge.com/how-to-install-gitlab-with-docker-on-ubuntu-2004/
         volumes:
-            - D:\gitlab_ci\gitlab-web:/etc/gitlab'  # on windows, UPDATE THIS ONE ACCORDING TO FILE SYSTEM   have to be this way in order to work
+            - D:/gitlab_ci/gitlab-web:/etc/gitlab'  # on windows, UPDATE THIS ONE ACCORDING TO FILE SYSTEM   have to be this way in order to work
             - 'gitlab-logs:/var/log/gitlab'
             - 'gitlab-data:/var/opt/gitlab'
         
