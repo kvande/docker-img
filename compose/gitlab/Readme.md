@@ -17,6 +17,7 @@
     * cd into: /etc/gitlab
     * in gitlab.rb uncomment line # external_url 'GENERATED_EXTERNAL_URL', change to external_url 'http://127.0.0.1:5123'   (5123 have to     match the one set in docker-compose)
     .. fix Git lfs (pretty far down). Uncomment gitlab_rails['lfs_enabled']
+    .. Also enable gitlab pages. Uncomment line # pages_external_url 'http://pages.example.com' (it is very far down), Change to url to http://127.0.0.1:5123,  (https://www.youtube.com/watch?v=dD8c7WNcc6s)
     .. while still in docker container, restart gitlab: gitlab-ctl reconfigure
 
 3] Create a project
