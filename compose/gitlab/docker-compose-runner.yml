@@ -1,15 +1,15 @@
 version: '3'
 services: 
-  gitlab-runner-one:
+  gitlab-runner-nine:
       image: gitlab/gitlab-runner:latest
       restart: always
-      hostname: 'runner-one'
+      hostname: 'runner-nine'
       volumes:
-        - 'C:\Temp\gitlab\gitlab-runner-one:/etc/gitlab-runner'   # update this
-        - 'gitlab-runner-one:/var/run/docker.sock'
-      
+        - 'C:\Temp\gitlab\gitlab-runner-nine:/etc/gitlab-runner'   # update this
+        - 'gitlab-runner-nine:/var/run/docker.sock'
+        - 'R:\Gitlab-runners-working-dir\docker-runner-nine:/home/gitlab/build_dir/'  # update this, to use ram drive on Windows to avoid ssd access all the time
       network_mode: "bridge"    # do not create a new network
 
 volumes:
-  gitlab-runner-one:
+  gitlab-runner-nine:
   

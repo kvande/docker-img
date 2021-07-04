@@ -33,8 +33,20 @@
     .. in rails console, run: Feature.enable(:junit_pipeline_view)
     
 
-## Setup gitlab runner
+## Setup gitlab runner with shared runners
+1] Head over to http://localhost:5123/admin/runners
+    . grab the token
+    . the url can not be used for docker runners (but ok for Windows service runners), must get the url of the docker container where gitlab web is running
+        . get the url from:  docker container inspect --format "{{.NetworkSettings.IPAddress}}" 'the container id for gitlab web'
+        . or just; docker container inspect 'the container id for gitlab web', if above does not work
+        . below will be using ip "172.18.0.2"
 
+2] Follow the steps below from 2] onwards
+
+last] Update all build dirs:  builds_dir = "/home/gitlab/build_dir" 
+
+
+## Setup gitlab runner, per project
 1] In gitlab web; Settings -> CI/CD
     . grab the token
     . the url can not be used, must get the url of the docker container where gitlab web is running
@@ -95,6 +107,19 @@
                 [runners.cache.gcs]
 
 
+7] Fix build dirs 
+            [[runners]]
+            name = "docker-runner-two"
+            url = "http://172.17.0.2:5123"
+            clone_url = "http://172.17.0.2:5123"
+            builds_dir = "/home/gitlab/build_dir"       # match the one in the docker compose file, to utlize ram disk at R: in Windows
+            token = "fgxZA4egaGhn-8ssRsiV"
+            executor = "shell"
+            [runners.custom_build_dir]
+            [runners.cache]
+                [runners.cache.s3]
+                [runners.cache.gcs]
+    
 
 ##  Upgrade to newer versions
 ### Web
@@ -127,6 +152,21 @@ Check current version in web ui; add /help to the end of the base url.
     Then re-tag it to latest to avoid updating compose-file: "docker image tag gitlab/gitlab-ce:13.12.5-ce.0 gitlab/gitlab-ce:latest"
 
     Then run commands in 2] again to check if it starts now. If so start on step 1] again.
+
+4b] If the runner page will not open again (this page: http://localhost:...../-/settings/ci_cd)
+
+(next time: Try not to clear "project tokens" and "group token". That will delete the ci variables, which is a bit anyoing if not needed to)
+
+
+Delete all tokens according to this: 
+
+https://docs-gitlab-com.translate.goog/ee/raketasks/backup_restore.html?_x_tr_sl=es&_x_tr_tl=en&_x_tr_hl=en-US&_x_tr_pto=ajax,se,elem#reset-runner-registration-tokens
+
+Then, "gitlab-ctl reconfigure".
+
+Runners will be probably been lost, re-add them :(
+
+
 
 ### Runner
 - not started yet 

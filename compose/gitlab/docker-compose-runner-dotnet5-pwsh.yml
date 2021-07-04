@@ -1,16 +1,15 @@
 version: '3'
 services: 
-  gitlab-runner-four:
+  gitlab-runner-three:
       build:
         context: ../../images/gitlab
         dockerfile: 'Dockerfile.dotnet5.pwsh'
       restart: always
-      hostname: 'runner-four'
+      hostname: 'runner-three'
       volumes:
-        - 'D:\gitlab_ci\gitlab-runner-four:/etc/gitlab-runner'   # update this
-        - 'gitlab-runner-four:/var/run/docker.sock'
-      
+        - 'D:\gitlab_ci\gitlab-runner-three:/etc/gitlab-runner'                       # update this
+        - 'gitlab-runner-three:/var/run/docker.sock'
+        - 'R:\Gitlab-runners-working-dir\docker-runner-three:/home/gitlab/build_dir/'  # update this, to use ram drive on Windows to avoid ssd access all the time
       network_mode: "bridge"    # do not create a new network
-
 volumes:
-  gitlab-runner-four:
+  gitlab-runner-three:
