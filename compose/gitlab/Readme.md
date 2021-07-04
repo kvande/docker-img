@@ -94,3 +94,39 @@
                 [runners.cache.s3]
                 [runners.cache.gcs]
 
+
+
+##  Upgrade to newer versions
+### Web
+
+Check current version in web ui; add /help to the end of the base url.
+
+0] Create backup if needed 
+
+1] Pull new version of image (to make sure this works out ok, even when using a pull below): "docker pull gitlab/gitlab-ce".  
+
+2] Run these commands to bring it all up again: 
+    docker-compose -f "docker-compose-web.yml" down 
+    docker-compose -f "docker-compose-web.yml" build --no-cache --pull (will run fast since image was pulled in 1 above)
+    docker-compose -f "docker-compose-web.yml" up -d                   (will take serveral minutes, check status with "docker container ls")          
+
+3] Wait for the container to start. Then, have to update '/etc/gitlab' again, since this not in a Docker volume, so repeat the step "2] in Setup gitlab web" above (external_url must be updated to gain web access again)
+
+4] In case of failures: docker container logs 'container id', to see any errors, like: 
+
+4a] If errors like this one
+    "
+    It seems you are upgrading from major version 13 to major version 14.  
+    It is required to upgrade to the latest 13.12.x version first before proceeding  
+    ."
+
+    Pull an older image first, like: "docker pull gitlab/gitlab-ce:13.12.5-ce.0"
+
+    Delete old latest image: "docker image rm gitlab/gitlab-ce:latest"
+
+    Then re-tag it to latest to avoid updating compose-file: "docker image tag gitlab/gitlab-ce:13.12.5-ce.0 gitlab/gitlab-ce:latest"
+
+    Then run commands in 2] again to check if it starts now. If so start on step 1] again.
+
+### Runner
+- not started yet 
