@@ -6,4 +6,4 @@ RUN apt update && \
     apt update && \
     apt -y install apt-transport-https && \
     apt update && \
-    apt -y install dotnet-sdk-5.0
+    apt -y install dotnet-sdk-6.0
