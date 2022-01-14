@@ -1,12 +1,16 @@
 
-In case of running a gitlab runner as windows service (not in docker):
 
-The runner will try to check out (git) from http://127.0.0.1:80 since it does
-not know about the port mapping in docker-compose. In order for this to
-take the correct port into account the clone_url has to be set, as below:
- 
-
-This is the complete setup, note the clone_url:
+1] Download a runner from: https://docs.gitlab.com/runner/install/windows.html
+2] Create as many folders with the structure windows-runner-one/two/three... as needed
+3] Copy the file from 1] into all folders as 'gitlab-runner.exe'
+4] Start an elevated prompt
+5] Cd into each of the folders from 2] and run the commands:
+    gitlab-runner.exe install -n Windows-runner-one/two/three...
+    gitlab-runner.exe start -n Windows-runner-one/two/three...
+6] Register each runner by cd into each folder and run:
+    gitlab-runner.exe register
+7] The url is that should be used is: http://127.0.0.1:5123
+8] Update clone_url and build_dir as shown in complete setup below for all of them
 
 
 concurrent = 1
@@ -19,6 +23,7 @@ check_interval = 0
   name = "jalla"
   url = "http://127.0.0.1:5123/"
   clone_url = "http://127.0.0.1:5123/"
+  builds_dir = "S:/Gitlab-runners-working-dir/windows-runner-change-name-here-to-match-the-runner-name"
   token = "abc12890128910201982"
   executor = "shell"
   shell = "powershell"

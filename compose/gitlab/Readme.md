@@ -20,7 +20,7 @@
     .. Also enable gitlab pages. Uncomment line # pages_external_url 'http://pages.example.com' (it is very far down), Change to url to http://127.0.0.1:5123,  (https://www.youtube.com/watch?v=dD8c7WNcc6s)  
     .. while still in docker container, restart gitlab: gitlab-ctl reconfigure  
 
-3] From version 14, gitlab do not present a change root user dialog at startup, (https://forum.gitlab.com/t/how-to-login-for-the-first-time-local-install-with-docker-image/55297)  
+3] From version 14, GitLab do not present a change root user dialog at startup, (https://forum.gitlab.com/t/how-to-login-for-the-first-time-local-install-with-docker-image/55297)  
    Use method from here: https://docs.gitlab.com/ee/security/reset_user_password.html#use-a-rails-console
     * .. exec into container  
     * .. run: gitlab-rails console -e production (do not have to cd into any specific folder)  
@@ -73,7 +73,7 @@ last] Update all build dirs:  builds_dir = "/home/gitlab/build_dir"
     . and name if creating more runners
 
 
-3] Run docker compose: docker-compose -f "docker-compose-runner-dotnet5-pwsh.yml" up -d
+3] Run docker compose: docker-compose -f "docker-compose-runner-dotnet6-pwsh.yml" up -d
     . use dotnetcore, or dotnetcore with powershell core if such containers are needed
     . neglect 'WARNING: Found orphan containers' message
 
@@ -133,8 +133,7 @@ last] Update all build dirs:  builds_dir = "/home/gitlab/build_dir"
             [runners.cache]
                 [runners.cache.s3]
                 [runners.cache.gcs]
-    For Windows, they should look like this:
-        builds_dir = "S:/Gitlab-runners-working-dir/windows-runner-five"
+   
 
 
 ##  Upgrade to newer versions
