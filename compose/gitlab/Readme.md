@@ -49,7 +49,7 @@ Use method from here: https://docs.gitlab.com/ee/security/reset_user_password.ht
 
     
 
-## Setup gitlab runner with shared runners
+## Setup gitlab runner with shared Docker runners
 If getting a 500 error on the admin page for shared runners 
 * Try log out and back in. If that does not work follow this [link](https://docs.gitlab.com/ee/raketasks/backup_restore.html#reset-runner-registration-tokens).
 * run `gitlab-rails dbconsole --database main` (takes likez)
@@ -77,8 +77,6 @@ If getting a 500 error on the admin page for shared runners
 * use dotnetcore, or dotnetcore with powershell core if such containers are needed
 * neglect 'WARNING: Found orphan containers' message
 
-
-###### FORTSETT HER!!!
 
 
 ### 4] Register runner  
@@ -139,6 +137,24 @@ If getting a 500 error on the admin page for shared runners
                 [runners.cache.gcs]
    
 
+## Setup gitlab runner with shared Windows runners
+
+### 1 Download latest version
+Download the latest version [from here](https://docs.gitlab.com/runner/install/windows.html).
+Rename the file in the Downloads folder to 'gitlab-runner.exe'.
+Create as many folder as number of runners with the naming structure 'windows-runner-one' or 'windows-runner-one-docker-executor'
+
+### 2 Install as a service
+* Open a command prompt as admin
+* Install the runner `gitlab-runner.exe install -n Gitlab-runner-one` (Gitlab-runner-one-docker for Docker executor)
+* Start the runner `gitlab-runner.exe start -n Gitlab-runner-one`
+
+### 3 Register the runner
+For everyone of the Windows runners, run `gitlab-runner.exe register`
+* use this url: http://127.0.0.1:5123/
+* token from Gitlab
+* name as Windows-runner-one or Windows-runner-one-docker
+* executor either 'shell' or 'docker'
 
 ##  Upgrade to newer versions
 ### Web
