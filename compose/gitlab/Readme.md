@@ -9,10 +9,6 @@ the content in that path is used so that the container can restart without loosi
 * pull latest image: `docker image pull gitlab/gitlab-ce` 
 * run the file like this: `docker-compose -f "docker-compose-web.yml" up -d  `
 
-1 errors]  
-    > - ERROR: for gitlab-web  Cannot start service gitlab-web: error while creating mount source path '/host_mnt/f/Temp/gitlab-web': mkdir /host_mnt/f: file exists  
-        . 'gitlab nonsense', the directory must be manually created. Create and rerun command.
-
 
 ### 2] When container has started  
 This normally takes like 2 minutes.  
