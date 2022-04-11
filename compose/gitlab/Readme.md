@@ -156,6 +156,12 @@ For everyone of the Windows runners, run `gitlab-runner.exe register`
 * name as Windows-runner-one or Windows-runner-one-docker
 * executor either 'shell' or 'docker'
 
+### 4 Update config.toml for Windows runners
+* Change build dirs to this structure:  
+`builds_dir = "S:/Gitlab-runners-working-dir/windows-runner-one"` 
+
+
+
 ##  Upgrade to newer versions
 ### Web
 
