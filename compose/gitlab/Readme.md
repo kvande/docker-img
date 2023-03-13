@@ -1,7 +1,17 @@
+<style>
+    
+    h2 {
+        margin-top: 3rem;
+    }
+    
+    p, li {
+        font-size: 1.1rem;
+    }
+</style>
 
 # How to get this running on a Windows pc
 
-## Setup gitlab web
+## Setup GitLab **WEB**
 
 ### 1] Start out with running the docker-compose-web file  
 * but, first alter the Windows specific path in it if needed  
@@ -49,7 +59,7 @@ Use method from here: https://docs.gitlab.com/ee/security/reset_user_password.ht
 
     
 
-## Setup gitlab runner with shared Docker runners
+## Setup GitLab **RUNNERS** with shared Docker runners
 If getting a 500 error on the admin page for shared runners 
 * Try log out and back in. If that does not work follow this [link](https://docs.gitlab.com/ee/raketasks/backup_restore.html#reset-runner-registration-tokens).
 * run `gitlab-rails dbconsole --database main` (takes likez)

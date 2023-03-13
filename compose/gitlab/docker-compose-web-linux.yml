@@ -1,0 +1,25 @@
+version: '3'
+services: 
+    gitlab-web:
+        image: 'gitlab/gitlab-ce:latest'
+        restart: always
+        hostname: 'gitlabweb'
+        environment:
+            GITLAB_OMNIBUS_CONFIG: |
+                gitlab_rails['lfs_enabled'] = true
+                gitlab_rails['gitlab_shell_ssh_port'] = 2224
+        ports:
+            - '5123:5123'   # see readme, will use another port than the default port 80. Have to alter EXTERNAL_URL in gitlab.rb afterwards
+            - '5124:5124'   # port available for gitlab pages
+            - '443:443'
+            - '2224:22'     # ssh port (HOST:CONTAINER), must match the port above, port 22 should not be used due to port collision // https://www.howtoforge.com/how-to-install-gitlab-with-docker-on-ubuntu-2004/
+        volumes:
+            - '/etc/gitlab:/etc/gitlab'  # on windows, UPDATE THIS ONE ACCORDING TO FILE SYSTEM   have to be this way in order to work
+            - 'gitlab-logs:/var/log/gitlab'
+            - 'gitlab-data:/var/opt/gitlab'
+        
+        network_mode: "bridge"    # do not create a new network
+
+volumes: 
+    gitlab-logs:
+    gitlab-data:
