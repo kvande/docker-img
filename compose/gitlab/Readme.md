@@ -27,15 +27,17 @@ This normally takes like 2 minutes.
 * install nano: `apt update && apt install nano -y`
 * then run `cd /etc/gitlab` 
 * next `nano gitlab.rb`  
-(search in nano is ctr-w)  
+(search in nano is ctr-w or F6)  
 .. uncomment line # external_url 'GENERATED_EXTERNAL_URL', change to external_url 'http://127.0.0.1:5123' (5123 have to match the one set in docker-compose)  
 .. fix Git lfs (pretty far down). [NOPE! Better keep it disabled. Otherwise all kinds of problems]  Uncomment gitlab_rails['lfs_enabled']  
 .. Also enable gitlab pages. Uncomment line # pages_external_url 'http://pages.example.com' (it is very far down), Change to url to http://127.0.0.1:5123,  (https://www.youtube.com/watch?v=dD8c7WNcc6s)  
 .. save and close that file
 
-* enable test report
-.. run `gitlab-rails console -e production` (do not have to cd into any specific folder), this command takes like 30 seconds to execute  
-.. in rails console, run: `Feature.enable(:junit_pipeline_view)`  (should repond with => true)  
+* enable test report  
+open a rails console:  
+`gitlab-rails console -e production` (do not have to cd into any specific folder), this command takes like 30 seconds to execute  
+.. in the rails console, run:  
+`Feature.enable(:junit_pipeline_view)`  (should repond with => true)  
 .. then and run `exit` to end rails consol
 * while still in docker container, restart gitlab: `gitlab-ctl reconfigure`
 
