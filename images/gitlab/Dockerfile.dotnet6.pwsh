@@ -20,4 +20,4 @@ RUN apt update && \
     apt -y install apt-transport-https && \
     apt update && \
     apt -y install dotnet-sdk-6.0 && \
-    apt -y intall bc
+    apt -y install bc

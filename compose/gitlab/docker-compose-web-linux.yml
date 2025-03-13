@@ -1,7 +1,8 @@
 version: '3'
 services: 
     gitlab-web:
-        image: 'gitlab/gitlab-ce:latest'
+        # often this needs many steps when upgrading, but just try with one from docker hub, and the logs in Docker will tell
+        image: 'gitlab/gitlab-ce:17.8.4-ce.0'
         restart: always
         hostname: 'gitlabweb'
         environment:

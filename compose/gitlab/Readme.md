@@ -17,7 +17,7 @@
 * but, first alter the Windows specific path in it if needed  
 the content in that path is used so that the container can restart without loosing all gitlab specific setup  
 * pull latest image: `docker image pull gitlab/gitlab-ce` 
-* run the file like this: `docker-compose -f "docker-compose-web.yml" up -d  `
+* run the file like this: `docker-compose -f "docker-compose-web (-linux if needed).yml" up -d  `
 
 
 ### 2] When container has started  
@@ -85,7 +85,8 @@ If getting a 500 error on the admin page for shared runners
 ### 3] Create runner(s): 
 * pull the latest image `docker pull gitlab/gitlab-runner`  
 * change the name in the compose file, like .....-runner-one
-* then run `docker-compose -f "docker-compose-runner-dotnet6-pwsh.yml" up -d`
+* then run:  
+ `docker-compose -f "docker-compose-runner-dotnet6-pwsh.yml" build --no-cache &&  docker-compose -f "docker-compose-runner-dotnet6-pwsh.yml" up -d`
 * use dotnetcore, or dotnetcore with powershell core if such containers are needed
 * neglect 'WARNING: Found orphan containers' message
 
@@ -183,10 +184,21 @@ Check current version in web ui; add /help to the end of the base url.
 
 1] Pull new version of image (to make sure this works out ok, even when using a pull below): "docker pull gitlab/gitlab-ce".  
 
-2] Run these commands to bring it all up again: 
-    docker-compose -f "docker-compose-web.yml" down 
-    docker-compose -f "docker-compose-web.yml" build --no-cache --pull (will run fast since image was pulled in 1 above)
+2] Run these commands to bring it all up again:  
+    **Windows**
+```   
+    docker-compose -f "docker-compose-web.yml" down  
+    docker-compose -f "docker-compose-web.yml" build --no-cache --pull (will run fast since image was pulled in 1 above)  
     docker-compose -f "docker-compose-web.yml" up -d                   (will take serveral minutes, check status with "docker container ls")          
+```
+    **Linux**
+    ```
+        docker compose -f "docker-compose-web-linux.yml" down
+        docker compose -f "docker-compose-web-linux.yml" build --no-cache --pull
+        docker compose -f "docker-compose-web-linux.yml" up -d 
+    
+    ```
+
 
 3] Wait for the container to start. Then, have to update '/etc/gitlab' again, since this not in a Docker volume, so repeat the step "2] in Setup gitlab web" above (external_url must be updated to gain web access again)
 
